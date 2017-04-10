@@ -19,8 +19,8 @@ namespace Memory_CPU_monitor
 
             while(true)
             {
-                Thread.Sleep(1000);
-                Console.WriteLine("CPU load: {0}", perfCPUCount.NextValue());       //perfCPUCount.NextValue() - return current number
+                Thread.Sleep(1000);//ja
+                Console.WriteLine("CPU load: {0}%", perfCPUCount.NextValue());       //perfCPUCount.NextValue() - return current number
             }
         }
     }
