@@ -21,7 +21,7 @@ namespace Memory_CPU_monitor
             {
                 Thread.Sleep(1000); 
                 Console.WriteLine("CPU load: {0}%", perfCPUCount.NextValue());       //perfCPUCount.NextValue() - return current number
-                Console.WriteLine("Memory available: {0}MB%", perfCPUCount.NextValue());
+                Console.WriteLine("Memory available: {0} MB", perfCPUCount.NextValue());
             }
         }
     }
