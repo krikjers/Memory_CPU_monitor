@@ -16,8 +16,14 @@ namespace Memory_CPU_monitor
 
         static void Main(string[] args)
         {
-            
-            //synth.Speak("Welcome to the Monitor");              // make computer talk
+            List<string> CPUmaxMessages = new List<string>();
+            CPUmaxMessages.Add("Warning, CPU at 100 percent");
+            CPUmaxMessages.Add("CPU is starting to melt");
+            CPUmaxMessages.Add("Turn off your PC");
+
+            Random rand = new Random();
+         
+            synth.Speak("Welcome to the Monitor");              // make computer talk
 
             #region Perfomance counters
             PerformanceCounter perfCPUCount = new PerformanceCounter("Processor Information", "% Processor Time", "_Total"); //get current CPU load in percentage
@@ -42,6 +48,8 @@ namespace Memory_CPU_monitor
 
             while (true)
             {
+                openWebsite("http://www.vg.no/");
+
                 //get perfomance counter values.
                 int CPUPercentage = (int)perfCPUCount.NextValue();
                 int memAvailable =  (int)perfMemCount.NextValue();
@@ -49,19 +57,26 @@ namespace Memory_CPU_monitor
                 Console.WriteLine("CPU load:       : {0}%", CPUPercentage);       //perfCPUCount.NextValue() - return current number
                 Console.WriteLine("Memory available: {0} MB", memAvailable);
 
-                if (speechSpeed <7) { speechSpeed++}
+                if (speechSpeed <5) { speechSpeed++; };           //gradually increase speech speed
 
+                #region logic
                 //speak to user if the values are in certain values.    
-                if (CPUPercentage < 80)
+                if (CPUPercentage > 80)
                 {                    
                     string cpuLoadVocalMessage = String.Format("the current CPU load is {0} percent", CPUPercentage);
+                    Speak(cpuLoadVocalMessage, VoiceGender.Female, speechSpeed);
+                }
+                else if (CPUPercentage == 80)
+                {
+                    string cpuLoadVocalMessage = CPUmaxMessages[rand.Next(4)];
                     Speak(cpuLoadVocalMessage, VoiceGender.Female, speechSpeed);
                 }
                 if (memAvailable > 500)
                 {                    
                     string memAvailableVocalMessage = String.Format("the current available memory is {0} megabytes", memAvailable);
                     Speak(memAvailableVocalMessage, VoiceGender.Male, speechSpeed);
-                }    
+                }
+                #endregion
 
                 Thread.Sleep(1000);     //delay for 1 sec
             } //end of while
@@ -88,6 +103,16 @@ namespace Memory_CPU_monitor
         {
             synth.Rate = talkRate;
             Speak(msg, gender);
+        }
+
+        public static void openWebsite(string URL)
+        {
+            //start a process 
+            Process process1 = new Process();
+            process1.StartInfo.FileName = "chrome.exe";
+            process1.StartInfo.Arguments = URL;
+            process1.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+            process1.Start();
         }
 
     }
