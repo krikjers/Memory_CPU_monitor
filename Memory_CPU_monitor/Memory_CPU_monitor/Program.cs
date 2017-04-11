@@ -12,10 +12,11 @@ namespace Memory_CPU_monitor
 {
     class Program
     {
+        private static  SpeechSynthesizer synth = new SpeechSynthesizer();
 
         static void Main(string[] args)
         {
-            SpeechSynthesizer synth = new SpeechSynthesizer();
+            
             //synth.Speak("Welcome to the Monitor");              // make computer talk
 
             #region Perfomance counters
@@ -32,10 +33,12 @@ namespace Memory_CPU_monitor
                    (int)uptimeSpan.TotalDays,           //casting "trims off" desimal part
                    (int)uptimeSpan.Hours,
                    (int)uptimeSpan.Minutes,
-                   (int)uptimeSpan.Seconds
+                   (int)    uptimeSpan.Seconds
                    );
 
-            synth.Speak(systemUptimeMessage);       //tell user the uptime
+            Speak(systemUptimeMessage, VoiceGender.Male, 7);       //tell user the uptime
+
+            int speechSpeed = 1;
 
             while (true)
             {
@@ -46,26 +49,46 @@ namespace Memory_CPU_monitor
                 Console.WriteLine("CPU load:       : {0}%", CPUPercentage);       //perfCPUCount.NextValue() - return current number
                 Console.WriteLine("Memory available: {0} MB", memAvailable);
 
+                if (speechSpeed <7) { speechSpeed++}
 
                 //speak to user if the values are in certain values.    
                 if (CPUPercentage < 80)
-                {
-                    //synth.SelectVoiceByHints(VoiceGender.Male);
+                {                    
                     string cpuLoadVocalMessage = String.Format("the current CPU load is {0} percent", CPUPercentage);
-                    synth.Speak(cpuLoadVocalMessage);
+                    Speak(cpuLoadVocalMessage, VoiceGender.Female, speechSpeed);
                 }
                 if (memAvailable > 500)
-                {
-                    //synth.SelectVoiceByHints(VoiceGender.Male);
+                {                    
                     string memAvailableVocalMessage = String.Format("the current available memory is {0} megabytes", memAvailable);
-                    synth.Speak(memAvailableVocalMessage);
-                }
-               
-                
-                
+                    Speak(memAvailableVocalMessage, VoiceGender.Male, speechSpeed);
+                }    
 
-                Thread.Sleep(1000);
+                Thread.Sleep(1000);     //delay for 1 sec
             } //end of while
+        } // end main
+
+
+        /// <summary>
+        /// speak in selected voice 
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="gender"></param>
+        public static void Speak(string msg, VoiceGender gender)                //static keyword: we dont need an object of program class to call speak()
+        {
+            //synth.Rate = 1;
+            synth.SelectVoiceByHints(gender);       //bug with gender....
+            synth.Speak(msg);
         }
+        /// <summary>
+        /// speak in selected voice with selected speed
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="gender"></param>
+        public static void Speak(string msg, VoiceGender gender, int talkRate)                //overloading Speak()
+        {
+            synth.Rate = talkRate;
+            Speak(msg, gender);
+        }
+
     }
 }
