@@ -4,3 +4,9 @@ C:\Users\Kristian\Mem_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\Memory_C
 C:\Users\Kristian\Mem_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\bin\Debug\Memory_CPU_monitor.pdb
 C:\Users\Kristian\Mem_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\obj\Debug\Memory_CPU_monitor.exe
 C:\Users\Kristian\Mem_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\obj\Debug\Memory_CPU_monitor.pdb
+C:\Users\Kristian\Desktop\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\bin\Debug\Memory_CPU_monitor.exe.config
+C:\Users\Kristian\Desktop\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\obj\Debug\Memory_CPU_monitor.exe
+C:\Users\Kristian\Desktop\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\obj\Debug\Memory_CPU_monitor.pdb
+C:\Users\Kristian\Desktop\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\bin\Debug\Memory_CPU_monitor.exe
+C:\Users\Kristian\Desktop\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\bin\Debug\Memory_CPU_monitor.pdb
+C:\Users\Kristian\Desktop\Memory_CPU_monitor\Memory_CPU_monitor\Memory_CPU_monitor\obj\Debug\Memory_CPU_monitor.csprojResolveAssemblyReference.cache
